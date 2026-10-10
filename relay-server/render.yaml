@@ -1,0 +1,20 @@
+# Render.com 配置 (Web Service)
+# 免費額度: 750 小時/月，但免費方案會休眠 (冷啟動 ~30s)
+# 建議升級到 Starter $7/月 避免休眠
+
+# render.yaml (放在專案根目錄)
+services:
+  - type: web
+    name: opencode-relay
+    runtime: docker
+    dockerfilePath: ./relay-server/Dockerfile
+    dockerContext: ./relay-server
+    plan: free  # 或 starter
+    region: singapore  # 新加坡區域
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "8080"
+    healthCheckPath: /health
+    autoDeploy: true

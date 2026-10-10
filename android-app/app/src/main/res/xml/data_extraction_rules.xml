@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-extraction-rules>
+    <cloud-backup>
+        <include domain="sharedpref" path="opencode_settings.xml"/>
+        <exclude domain="database" path="opencode_database"/>
+    </cloud-backup>
+    <device-transfer>
+        <include domain="sharedpref" path="opencode_settings.xml"/>
+        <include domain="database" path="opencode_database"/>
+    </device-transfer>
+</data-extraction-rules>

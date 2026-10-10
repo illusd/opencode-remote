@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<full-backup-content>
+    <include domain="sharedpref" path="opencode_settings.xml"/>
+    <include domain="database" path="opencode_database"/>
+    <exclude domain="file" path="logs/"/>
+</full-backup-content>

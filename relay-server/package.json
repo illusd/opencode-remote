@@ -1,0 +1,28 @@
+{
+  "name": "opencode-relay-server",
+  "version": "1.0.0",
+  "description": "WebSocket relay server for OpenCode remote control",
+  "main": "dist/standalone-server.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/standalone-server.js",
+    "dev": "tsx watch standalone-server.ts",
+    "deploy:fly": "fly deploy",
+    "deploy:railway": "railway up",
+    "deploy:render": "echo 'Connect GitHub repo to Render.com'"
+  },
+  "dependencies": {
+    "ws": "^8.18.0",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/ws": "^8.5.12",
+    "@types/uuid": "^10.0.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

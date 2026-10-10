@@ -1,0 +1,25 @@
+# Fly.io 配置 (免費額度: 3 台共享 CPU VM, 160GB 月傳輸)
+# 部署: fly launch -> fly deploy
+
+app = "opencode-relay"
+primary_region = "hkg"  # 香港區域，亞洲用戶延遲低
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+[[vm]]
+  memory = "256mb"
+  cpu_kind = "shared"
+  cpus = 1
