@@ -17,12 +17,6 @@ android {
         versionName = "1.0.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        // Room schema location for kapt
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = mapOf("room.schemaLocation" to "$projectDir/schemas")
-            }
-        }
     }
     
     buildTypes {
@@ -66,12 +60,13 @@ android {
             excludes += listOf("META-INF/*.kotlin_module")
         }
     }
-}
-
-// KAPT 設定
-kapt {
-    correctErrorTypes = true
-    useBuildCache = true
+    
+    // Room schema location for kapt
+    kapt {
+        arguments {
+            arg("room.schemaLocation", "$projectDir/schemas")
+        }
+    }
 }
 
 dependencies {
