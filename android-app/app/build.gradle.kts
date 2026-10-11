@@ -27,7 +27,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
-            signingConfig = signingConfigs.getByName("release")
+            // CI 建置不簽名，本地簽名請自行設定 signingConfigs
         }
         debug {
             isDebuggable = true
@@ -143,9 +143,6 @@ dependencies {
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>.configureEach {
     kotlinOptions {
-        freeCompilerArgs += listOf(
-            "-Xopt-in=kotlin.RequiresOptIn",
-            "-P plugin:serialization:classpath=app/build/generated/ksp/debug/kotlin"
-        )
+        freeCompilerArgs += listOf("-Xopt-in=kotlin.RequiresOptIn")
     }
 }
