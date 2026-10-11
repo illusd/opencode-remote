@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      
+       
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
@@ -31,16 +31,10 @@ jobs:
           gradle-version: '8.7'
           cache-read-only: false
           
-      - name: Generate Gradle Wrapper
-        run: |
-          cd android-app
-          chmod +x gradlew
-          ./gradlew wrapper --gradle-version 8.7
-        
       - name: Build Release APK
         run: |
           cd android-app
-          ./gradlew assembleRelease --no-daemon
+          gradle assembleRelease --no-daemon
           
       - name: Verify APK
         run: |
