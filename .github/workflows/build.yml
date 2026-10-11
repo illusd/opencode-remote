@@ -29,14 +29,13 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '8.7'
+          cache-read-only: false
           
-      - name: Generate Gradle Wrapper (if missing)
+      - name: Generate Gradle Wrapper
         run: |
           cd android-app
-          if [ ! -f gradle/wrapper/gradle-wrapper.jar ]; then
-            gradle wrapper --gradle-version 8.7
-          fi
           chmod +x gradlew
+          ./gradlew wrapper --gradle-version 8.7
         
       - name: Build Release APK
         run: |
