@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
     id("com.google.dagger.hilt.android")
     id("androidx.navigation.safeargs.kotlin")
 }
@@ -16,6 +17,12 @@ android {
         versionName = "1.0.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        // Room schema location for kapt
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = mapOf("room.schemaLocation" to "$projectDir/schemas")
+            }
+        }
     }
     
     buildTypes {
@@ -59,13 +66,12 @@ android {
             excludes += listOf("META-INF/*.kotlin_module")
         }
     }
-    
-    // Hilt 需要的 Java 8 支援
-    javaCompileOptions {
-        annotationProcessorOptions {
-            arguments += mapOf("room.schemaLocation" to "$projectDir/schemas".toString())
-        }
-    }
+}
+
+// KAPT 設定
+kapt {
+    correctErrorTypes = true
+    useBuildCache = true
 }
 
 dependencies {
@@ -138,12 +144,6 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.6.7")
     debugImplementation("androidx.compose.ui:ui-tooling:1.6.7")
     debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.7")
-}
-
-// KAPT 設定
-kapt {
-    correctErrorTypes = true
-    useBuildCache = true
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>.configureEach {
